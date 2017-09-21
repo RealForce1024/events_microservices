@@ -1,4 +1,4 @@
-package com.example.events_microservices;
+package com.microservices.events;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

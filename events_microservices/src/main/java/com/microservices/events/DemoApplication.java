@@ -1,4 +1,4 @@
-package com.example.events_microservices;
+package com.microservices.events;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
