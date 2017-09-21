@@ -37,7 +37,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile 'org.springframework.data:spring-data-rest-hal-browser'
-	compile('org.springframework.boot:spring-data-rest-hal-browser')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
