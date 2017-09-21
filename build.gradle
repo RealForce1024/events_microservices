@@ -10,8 +10,8 @@ buildscript {
 
 }
 
-apply plugin: ‘java'
-apply println 'idea'
+apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
