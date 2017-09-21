@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.7.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+//apply plugin: 'spring-boot'//The plugin id 'spring-boot' is deprecated. Please use 'org.springframework.boot' instead.
+//1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+allprojects {
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        mavenCentral()
+        jcenter()
+    }
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-logging')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
