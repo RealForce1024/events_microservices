@@ -8,19 +8,27 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath ('se.transmode.gradle:gradle-docker:1.2')
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+apply plugin: 'docker'
 
 //apply plugin: 'spring-boot'//The plugin id 'spring-boot' is deprecated. Please use 'org.springframework.boot' instead.
 //1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
 
-group = 'com.microservices.events'
+group = 'event-service'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+mainClassName='com.microservices.events.DemoApplication'
+
+distDocker {
+	exposePort 8080
+}
 
 allprojects {
     repositories {
