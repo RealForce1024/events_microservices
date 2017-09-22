@@ -1,14 +1,13 @@
-FROM java:8
-
+#FROM java:8
+FROM java:alpine
 RUN mkdir /app
 WORKDIR /app
 
-ADD build/libs/events-0.0.1-SNAPSHOT.jar /app
-RUN ln -s /app/events-0.0.1-SNAPSHOT.jar /app/events-latest.jar
-
+#ADD build/libs/event-service-0.0.1-SNAPSHOT.jar /app
+ADD target/event-service-0.0.1-SNAPSHOT.jar /app
+RUN ln -s /app/event-service-0.0.1-SNAPSHOT.jar /app/event-service-latest.jar
 EXPOSE 9999
-CMD ["java","-jar","/app/events-latest.jar"]
+CMD ["java","-jar","/app/event-service-latest.jar"]
+#CMD ["java","-jar","/app/event-service-0.0.1-SNAPSHOT.jar"]
 
 # CMD java -jar /app/events-latest.jar
-
-

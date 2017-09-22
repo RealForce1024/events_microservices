@@ -1,15 +1,15 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.7.RELEASE'
-	}
-	repositories {
-		maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath ('se.transmode.gradle:gradle-docker:1.2')
-	}
+    ext {
+        springBootVersion = '1.5.7.RELEASE'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
 }
 
 apply plugin: 'java'
@@ -24,16 +24,28 @@ apply plugin: 'docker'
 group = 'event-service'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-mainClassName='com.microservices.events.DemoApplication'
+mainClassName = 'com.microservices.events.DemoApplication'
 
 distDocker {
-	exposePort 8080
+    exposePort(8080)
 }
+
+task buildDocker(type: Docker, dependsOn: build) {
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into "${stageDir}/target"
+        }
+    }
+}
+
 
 allprojects {
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
-        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         mavenCentral()
         jcenter()
     }
@@ -42,10 +54,10 @@ allprojects {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-logging')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile 'org.springframework.data:spring-data-rest-hal-browser'
-	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile 'org.springframework.data:spring-data-rest-hal-browser'
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
