@@ -3,4 +3,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/gomaster-me/event_microservices/config-repo
+          uri: https://github.com/gomaster-me/events_microservices/config-repo
