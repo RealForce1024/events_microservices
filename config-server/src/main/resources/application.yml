@@ -3,7 +3,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/gomaster-me/events_microservices/config-repo
+          uri: https://github.com/gomaster-me/config-repo
 server:
   port: 8888
 ---
@@ -13,5 +13,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/gomaster-me/events_microservices/config-repo
+          uri: https://github.com/gomaster-me/config-repo
 
