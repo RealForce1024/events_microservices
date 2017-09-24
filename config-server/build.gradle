@@ -8,13 +8,14 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//        classpath('io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE')
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-
+apply plugin: "io.spring.dependency-management"
 
 //apply plugin: 'spring-boot'//The plugin id 'spring-boot' is deprecated. Please use 'org.springframework.boot' instead.
 //1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
@@ -22,10 +23,7 @@ apply plugin: 'org.springframework.boot'
 group = 'config-server'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-mainClassName = 'com.micro.configserver.ConfigServerApplication'
-
-
-
+targetCompatibility = 1.8
 
 allprojects {
     repositories {
@@ -36,10 +34,17 @@ allprojects {
     }
 }
 
-
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.cloud:spring-cloud-config-server')
+    // compile 'org.springframework.cloud:spring-cloud-starter-config'
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+     imports {
+          mavenBom 'org.springframework.cloud:spring-cloud-config:1.3.2.RELEASE'
+          mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR5"
+     }
 }
