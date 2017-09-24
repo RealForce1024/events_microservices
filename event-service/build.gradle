@@ -17,6 +17,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
 apply plugin: 'docker'
+apply plugin: "io.spring.dependency-management"
 
 //apply plugin: 'spring-boot'//The plugin id 'spring-boot' is deprecated. Please use 'org.springframework.boot' instead.
 //1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
@@ -53,6 +54,7 @@ allprojects {
 
 
 dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.boot:spring-boot-starter-logging')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
@@ -60,4 +62,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR5"
+    }
 }
