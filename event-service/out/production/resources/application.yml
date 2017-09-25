@@ -1,6 +1,10 @@
 server:
   port: 7777
   context-path: /event-service
+management:
+  security:
+    enabled: false
+
 ---
 spring:
   profiles: docker
