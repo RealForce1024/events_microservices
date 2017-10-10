@@ -6,6 +6,7 @@ spring:
           uri: https://github.com/gomaster-me/config-repo
 server:
   port: 8888
+
 ---
 spring:
   profiles: docker
