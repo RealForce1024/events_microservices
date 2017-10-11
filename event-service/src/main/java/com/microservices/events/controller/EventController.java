@@ -16,7 +16,6 @@ public class EventController {
         if (featureXEnable.equals("true")) {
             return "feature.x.enable = true";
         }
-
         return "no enable feature";
     }
 }

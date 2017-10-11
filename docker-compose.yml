@@ -1,0 +1,42 @@
+version: '2'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+  config-server:
+    build: config-server
+    restart: always
+    command: java -jar /app/config-server-latest.jar
+    environment:
+        SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8020:8020"
+    depends_on:
+      - rabbitmq
+
+  event-service-1:
+    build: event-service
+    restart: always
+    command: bash -c "wait-for-it config-server:8020 && wait-for-it rabbitmq:5672 && java -jar /app/event-service-latest.jar"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      server_port: 9000
+    ports:
+      - "9000:9000"
+    depends_on:
+      - config-server
+      - rabbitmq
+
+  event-service-2:
+    build: event-service
+    restart: always
+    command: bash -c "wait-for-it config-server:8020 && wait-for-it rabbitmq:5672 && java -jar /app/event-service-latest.jar"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      server_port: 9001
+    ports:
+      - "9001:9001"
+    depends_on:
+      - config-server
+      - rabbitmq

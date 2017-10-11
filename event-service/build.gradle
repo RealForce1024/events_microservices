@@ -54,13 +54,14 @@ allprojects {
 
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.boot:spring-boot-starter-logging')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile 'org.springframework.data:spring-data-rest-hal-browser'
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile('org.springframework.cloud:spring-cloud-starter-config')
+    compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 dependencyManagement {

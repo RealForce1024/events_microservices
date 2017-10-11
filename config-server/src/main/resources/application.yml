@@ -5,7 +5,7 @@ spring:
         git:
           uri: https://github.com/gomaster-me/config-repo
 server:
-  port: 8888
+  port: 8020
 
 ---
 spring:
@@ -15,4 +15,5 @@ spring:
       server:
         git:
           uri: https://github.com/gomaster-me/config-repo
-
+  rabbitmq:
+    host: rabbitmq

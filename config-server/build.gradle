@@ -8,6 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
 
@@ -15,6 +16,8 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: "io.spring.dependency-management"
+apply plugin: 'docker'
+apply plugin: 'application'
 
 //apply plugin: 'spring-boot'//The plugin id 'spring-boot' is deprecated. Please use 'org.springframework.boot' instead.
 //1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
@@ -33,12 +36,29 @@ allprojects {
     }
 }
 
+distDocker {
+    exposePort(8080)
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into "${stageDir}/target"
+        }
+    }
+}
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.cloud:spring-cloud-config-server')
+    compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
 
 dependencyManagement {
      imports {

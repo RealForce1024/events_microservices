@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  config-server:
+    build: build/docker
+    command: java -jar /app/config-server-latest.jar
+    environment:
+      spring_profiles_active: docker
+    ports:
+      - 8888:8888

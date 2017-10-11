@@ -1,6 +1,6 @@
 server:
   port: 7777
-  context-path: /event-service
+#  context-path: /event-service
 management:
   security:
     enabled: false
@@ -8,6 +8,9 @@ management:
 ---
 spring:
   profiles: docker
-  data:
-    mongodb:
-      host: mongo
+  rabbitmq:
+    host: rabbitmq
+#  data:
+#    mongodb:
+#      host: mongo
+
