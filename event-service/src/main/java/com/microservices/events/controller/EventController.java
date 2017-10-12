@@ -11,7 +11,7 @@ public class EventController {
     @Value("${feature.x.enable}")
     String featureXEnable;
 
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public String index() {
         if (featureXEnable.equals("true")) {
             return "feature.x.enable = true";
