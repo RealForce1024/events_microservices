@@ -4,6 +4,10 @@ server:
 management:
   security:
     enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka/
 
 ---
 spring:

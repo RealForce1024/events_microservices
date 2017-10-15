@@ -3,7 +3,7 @@ spring:
     name: event
   cloud:
     config:
-      uri: http://localhost:8020
+      uri: http://localhost:8888
 #      uri: http://config-server:8020
 
 ---
@@ -11,4 +11,4 @@ spring:
   profiles: docker
   cloud:
     config:
-      uri: http://config-server:8020
+      uri: http://config-server:8888
