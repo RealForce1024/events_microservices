@@ -3,7 +3,6 @@ buildscript {
         springBootVersion = '1.5.7.RELEASE'
     }
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         mavenCentral()
     }
     dependencies {
@@ -23,12 +22,15 @@ apply plugin: 'application'
 //1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
 
 group = 'com.microservice'
+//name = 'eureka-server'
+applicationName = 'eureka-server'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 allprojects {
     repositories {
+        mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         mavenCentral()
@@ -54,11 +56,12 @@ task buildDocker(type: Docker, dependsOn: build) {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
-     imports {
-          mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR5"
-     }
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR6"
+    }
 }
