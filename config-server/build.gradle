@@ -24,7 +24,7 @@ apply plugin: 'application'
 //apply plugin: 'spring-boot'//The plugin id 'spring-boot' is deprecated. Please use 'org.springframework.boot' instead.
 //1.4.x的spring-boot 在1.5中建议使用org.springframework.boot替代。
 
-group = 'config-server'
+group = 'com.micro'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

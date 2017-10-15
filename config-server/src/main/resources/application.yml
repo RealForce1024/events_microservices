@@ -5,7 +5,7 @@ spring:
         git:
           uri: https://github.com/gomaster-me/config-repo
 server:
-  port: 8020
+  port: 8888
 management:
   security:
     enabled: false
